@@ -1,24 +1,26 @@
-# Simple MAC Changer
+﻿# Store Listing Copy
+
+## Short name
+Simple MAC Changer
+
+## Price
+$1.99 USD
 
 ## Short description
-
-Review network adapters and prepare MAC address changes.
+Review adapters and generate reversible MAC change plans with a 15-day full trial.
 
 ## Full description
+Simple MAC Changer is a practical Windows utility for local network adapter review and MAC address preparation workflows.
 
-Simple MAC Changer is a Windows utility designed around a simple, local-first workflow. The initial app gives users a clear starting surface for list adapters, generate or enter a MAC address, and create a reversible change plan.
+## Licensing behavior
+- 15-day fully functional trial.
+- After trial window, features are limited to 15 minutes per day.
+- Store API checks determine paid/trial status in the app and updates the about/license panel.
 
-## Feature bullets
-
-- Adapter review surface
-- MAC generation workflow
-- Restore-original reminder
-- Admin-action handoff notes
-
-## Keywords
-
-Windows utility, local files, productivity, Simple MAC Changer
-
-## Release notes
-
-Initial Microsoft Store app scaffold.
+## Features
+- Network adapter review (name, status, interface ID, MAC)
+- Generate and validate MAC addresses
+- Build reversible PowerShell change plans
+- Restore command generation
+- Export plan to file
+- Activity logs and local usage audit trail

@@ -1,12 +1,13 @@
-<Window x:Class="SimpleMacChanger.MainWindow"
+﻿<Window x:Class="SimpleMacChanger.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Simple MAC Changer"
-        Width="1120"
-        Height="720"
-        MinWidth="900"
-        MinHeight="620"
-        Background="#F8FAFC">
+        Width="1220"
+        Height="780"
+        MinWidth="980"
+        MinHeight="680"
+        Background="#F8FAFC"
+        Icon="/SimpleMacChanger;component/Assets/appicon.png">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="0,0,10,10" />
@@ -49,7 +50,8 @@
         <Border Grid.Row="0" Background="#0F766E" Padding="28,24">
             <StackPanel>
                 <TextBlock Text="Simple MAC Changer" Foreground="White" FontSize="30" FontWeight="Bold" />
-                <TextBlock Text="Review network adapters and prepare MAC address changes." Foreground="#E0F2FE" FontSize="16" Margin="0,6,0,0" />
+                <TextBlock Text="Review network adapters and apply reversible MAC change plans."
+                           Foreground="#E0F2FE" FontSize="16" Margin="0,6,0,0" />
             </StackPanel>
         </Border>
 
@@ -68,7 +70,9 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="Workflow" FontSize="21" FontWeight="SemiBold" Foreground="#0F172A" />
-                    <TextBlock Grid.Row="1" Text="List adapters, generate or enter a MAC address, validate format, and generate a reversible PowerShell change plan." TextWrapping="Wrap" Style="{StaticResource MutedText}" Margin="0,8,0,18" />
+                    <TextBlock Grid.Row="1"
+                               Text="Load adapters, generate or enter MAC addresses, validate format, and create a reversible PowerShell plan."
+                               TextWrapping="Wrap" Style="{StaticResource MutedText}" Margin="0,8,0,18" />
 
                     <Grid Grid.Row="2">
                         <Grid.RowDefinitions>
@@ -89,11 +93,11 @@
                             <ListView x:Name="AdapterList" SelectionChanged="OnAdapterSelectionChanged">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="Adapter Name" Width="320" DisplayMemberBinding="{Binding Name}" />
-                                        <GridViewColumn Header="MAC Address" Width="165" DisplayMemberBinding="{Binding MacAddress}" />
+                                        <GridViewColumn Header="Adapter Name" Width="340" DisplayMemberBinding="{Binding Name}" />
+                                        <GridViewColumn Header="MAC Address" Width="165" DisplayMemberBinding="{Binding DisplayMac}" />
                                         <GridViewColumn Header="Type" Width="130" DisplayMemberBinding="{Binding Type}" />
                                         <GridViewColumn Header="Status" Width="150" DisplayMemberBinding="{Binding Status}" />
-                                        <GridViewColumn Header="ID" Width="170" DisplayMemberBinding="{Binding InterfaceId}" />
+                                        <GridViewColumn Header="ID" Width="190" DisplayMemberBinding="{Binding InterfaceId}" />
                                     </GridView>
                                 </ListView.View>
                             </ListView>
@@ -105,12 +109,6 @@
 
             <Border Grid.Column="1" Background="#F1F5F9" BorderBrush="#E2E8F0" BorderThickness="1" Padding="22" Margin="18,0,0,0">
                 <StackPanel>
-                    <TextBlock Text="Initial app scope" FontSize="18" FontWeight="SemiBold" Foreground="#0F172A" Margin="0,0,0,14" />
-                    <TextBlock Text="Adapter review surface" Style="{StaticResource FeatureText}" />
-                    <TextBlock Text="MAC generation and validation" Style="{StaticResource FeatureText}" />
-                    <TextBlock Text="Reversible change planning" Style="{StaticResource FeatureText}" />
-                    <TextBlock Text="Actionable admin handoff script output" Style="{StaticResource FeatureText}" />
-                    <Separator Margin="0,10,0,18" />
                     <TextBlock Text="Plan Editor" FontSize="18" FontWeight="SemiBold" Foreground="#0F172A" Margin="0,0,0,10" />
                     <TextBlock Text="Selected adapter" Style="{StaticResource MutedText}" />
                     <TextBlock x:Name="CurrentAdapterText" Margin="0,0,0,8" Text="No adapter selected" Style="{StaticResource MutedText}" FontWeight="SemiBold" />
@@ -121,11 +119,26 @@
                         <Button Content="Export plan to file..." Click="OnExportPlan" />
                         <Button Content="Clear Log" Click="OnClearLog" />
                     </WrapPanel>
-                    <TextBlock Text="Action Log" FontSize="18" FontWeight="SemiBold" Foreground="#0F172A" Margin="0,10,0,10" />
-                    <ListBox x:Name="ActivityList" Height="310" />
-                    <Separator Margin="0,10,0,18" />
+
+                    <TextBlock Text="Feature log" FontSize="18" FontWeight="SemiBold" Foreground="#0F172A" Margin="0,8,0,10" />
+                    <ListBox x:Name="ActivityList" Height="220" />
+
+                    <Separator Margin="0,10,0,12" />
+                    <DockPanel>
+                        <TextBlock Text="Licensing" FontSize="18" FontWeight="SemiBold" Foreground="#0F172A" DockPanel.Dock="Left" />
+                        <Button Content="View Logs" Click="OnViewLogs" HorizontalAlignment="Right" Width="90" />
+                    </DockPanel>
+                    <TextBlock x:Name="LicenseText" Text="Checking license..." Style="{StaticResource MutedText}" Margin="0,6,0,4" />
+                    <TextBlock x:Name="LicenseDetailsText" Style="{StaticResource MutedText}" TextWrapping="Wrap" />
+                    <TextBlock x:Name="UsageText" Style="{StaticResource MutedText}" Margin="0,8,0,0" />
+                    <WrapPanel Margin="0,10,0,0">
+                        <Button Content="About Simple MAC Changer" Click="OnShowAbout" />
+                    </WrapPanel>
+
+                    <Separator Margin="0,10,0,12" />
                     <TextBlock Text="Store readiness" FontSize="18" FontWeight="SemiBold" Foreground="#0F172A" Margin="0,0,0,10" />
-                    <TextBlock Text="This app is now built around safe, reversible planning. You can package a signed copy later for Store-ready delivery." Style="{StaticResource MutedText}" />
+                    <TextBlock Text="Store-ready prep completed: icon set, Microsoft Store licensing text, log artifact, screenshot placeholders, and package helper scripts."
+                               Style="{StaticResource MutedText}" TextWrapping="Wrap" />
                     <TextBlock x:Name="AdminHint" Margin="0,10,0,0" Style="{StaticResource MutedText}" TextWrapping="Wrap" />
                 </StackPanel>
             </Border>
@@ -136,3 +149,4 @@
         </Border>
     </Grid>
 </Window>
+

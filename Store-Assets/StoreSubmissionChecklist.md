@@ -1,9 +1,15 @@
-# Store Submission Checklist
-
-- Reserve the exact app name in Partner Center.
-- Update MSIX package identity after reservation.
-- Generate final app icon and Store artwork.
-- Capture screenshots from the running app.
-- Build and verify the MSIX or MSIXUPLOAD package.
-- Upload package, screenshots, listing text, and privacy policy in Partner Center.
-- Confirm age rating and additional testing notes.
+﻿- Reserve the exact app name in Partner Center.
+- Validate package identity/Publisher matches your Store reservation.
+- Generate all store-required logos and icons in Store-Assets.
+- Include product price and trial language exactly as intended:
+  - $1.99 USD
+  - 15-day fully functional trial
+  - 15 minutes/day post-trial cap
+- Confirm Store licensing verification is implemented with `Windows.Services.Store` in-app and fallback path is documented.
+- Capture and include at least 3 screenshots:
+  - 01-main-workflow.png
+  - 02-licensing-usage.png
+  - 03-logging-help.png
+- Add logs and app usage policy note in About/licensing area.
+- Update privacy policy text and confirm data handling claim.
+- Build and verify final package output before upload.

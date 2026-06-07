@@ -1,15 +1,26 @@
-# Simple MAC Changer for Windows
+﻿# Simple MAC Changer for Windows
 
 Review network adapters and prepare MAC address changes.
 
-This is a practical Windows desktop app scaffold for $(System.Collections.Hashtable.Title). It uses .NET 8 and WPF, keeps adapter review and reversible change-planning workflows in-app, and now includes a packaging script for Windows distribution.
+This is a practical WPF utility that helps you review adapters, generate/review reversible MAC change plans, and track local activity while enforcing the configured trial model.
 
-## Initial scope
+## Features
 
 - Adapter review surface
 - MAC generation and validation
 - Reversible change planning
-- Actionable admin handoff script output
+- Restore-plan output
+- Persistent usage and action logging
+- Microsoft Store-aware licensing check (`Windows.Services.Store`)
+- 15-day fully functional trial with post-trial daily cap behavior
+
+## Trial and licensing model
+
+- Price: **$1.99 USD**
+- Trial: **15-day fully functional period**
+- After trial: **15 minutes/day** in app actions until purchase
+- Trial/purchase state shown in the in-app licensing panel and About dialog.
+- In development/unpackaged builds, state uses a local 15-day fallback trial and local usage metering.
 
 ## Build
 
@@ -24,9 +35,25 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-package.ps1
 ```
 
 This produces:
-- `artifacts\publish\win-x64\` (published WPF executable)
-- `artifacts\package\SimpleMacChanger-Windows-win-x64.zip` (distribution zip)
+- `artifacts\publish\win-x64\`
+- `artifacts\package\SimpleMacChanger-Windows-win-x64.zip`
 
-## Store notes
+## Store prep
 
-Before final packaging, reserve the exact Microsoft Store product name in Partner Center and update package identity values to match that reservation.
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\prepare-store-assets.ps1
+```
+
+Output produced:
+- App icon and store icons in `SimpleMacChanger\Assets\appicon.ico`
+- Store listing and legal copy in `Store-Assets\`
+- Screenshot images in `screenshots\` (`01-main-workflow.png`, `02-licensing-usage.png`, `03-logging-help.png`)
+
+## Store submission notes
+
+Before final store upload, reserve the exact Microsoft Store product name and complete these checklist items:
+- confirm app reserved name and identity match your Store account entry
+- ensure package identity/version and Store listing price ($1.99 USD) match the reserved app
+- include Store icons: `StoreLogo.png`, `Square44x44Logo.png`, `Square150x150Logo.png`, `Square310x310Logo.png`, `Wide310x150Logo.png`
+- upload screenshots and listing text from `Store-Assets\StoreListing.md`
+- include Privacy Policy in `Store-Assets\PrivacyPolicy.txt`
