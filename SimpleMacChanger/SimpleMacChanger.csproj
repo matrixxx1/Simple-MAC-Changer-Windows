@@ -2,6 +2,11 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <PackageId>m3Coding.SimpleMACChanger</PackageId>
+    <Title>Simple MAC Changer</Title>
+    <Authors>m3 Coding</Authors>
+    <Product>Simple MAC Changer</Product>
+    <Description>Simple MAC Changer for Windows</Description>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
@@ -16,7 +21,6 @@
 
   <ItemGroup>
     <Resource Include="Assets\\appicon.png" />
-    <None Include="Assets\\appicon.ico" />
     <None Include="..\\Store-Assets\\*" CopyToOutputDirectory="Never" />
   </ItemGroup>
 </Project>

@@ -1,15 +1,27 @@
 ﻿- Reserve the exact app name in Partner Center.
 - Validate package identity/Publisher matches your Store reservation.
+- Ensure the Store full description begins with Dependencies.
 - Generate all store-required logos and icons in Store-Assets.
 - Include product price and trial language exactly as intended:
   - $1.99 USD
   - 15-day fully functional trial
   - 15 minutes/day post-trial cap
+- Run `scripts/prepare-msixupload.ps1` as the final local deploy-prep step.
+  - Verify outputs exist:
+    - `artifacts\msix\m3Coding.SimpleMACChanger.msix`
+    - `artifacts\msix\m3Coding.SimpleMACChanger-8srffngrg4x08.msixupload`
+  - Confirm `Store-Assets\StoreSubmission.html` contains the exact copy/paste full path for the `.msixupload` file.
+- Confirm Store identity fields match reserved reservation:
+  - Package/Identity/Name: m3Coding.SimpleMACChanger
+  - Package/Identity/Publisher: CN=AFF85DD5-3D92-42A5-BA39-3AF6D41B1837
+  - Package/Properties/PublisherDisplayName: m3 Coding
+  - Package Family Name: m3Coding.SimpleMACChanger_8srffngrg4x08
+  - Store ID: 9NZD3XQ9HCPQ
 - Confirm Store licensing verification is implemented with `Windows.Services.Store` in-app and fallback path is documented.
 - Capture and include at least 3 screenshots:
   - 01-main-workflow.png
   - 02-licensing-usage.png
   - 03-logging-help.png
 - Add logs and app usage policy note in About/licensing area.
-- Update privacy policy text and confirm data handling claim.
+- Update Privacy Policy text and confirm data handling claim.
 - Build and verify final package output before upload.

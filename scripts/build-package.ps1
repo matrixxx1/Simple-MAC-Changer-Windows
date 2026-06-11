@@ -12,7 +12,7 @@ $project = Join-Path $repoRoot "SimpleMacChanger\SimpleMacChanger.csproj"
 $publishProfile = Join-Path $repoRoot "SimpleMacChanger\Properties\PublishProfiles\WinX64Folder.pubxml"
 $publishDir = Join-Path -Path (Join-Path -Path $repoRoot -ChildPath $OutputRoot) -ChildPath ("publish\\$Runtime")
 $packageDir = Join-Path -Path (Join-Path -Path $repoRoot -ChildPath $OutputRoot) -ChildPath "package"
-$archive = Join-Path -Path $packageDir -ChildPath "SimpleMacChanger-Windows-$Runtime.zip"
+$archive = Join-Path -Path $packageDir -ChildPath "m3Coding.SimpleMACChanger-Windows-$Runtime.zip"
 
 if (Test-Path $publishDir) { Remove-Item -Recurse -Force $publishDir }
 New-Item -ItemType Directory -Force -Path $publishDir | Out-Null
